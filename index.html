@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruleta de Preguntas Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Ruleta de Preguntas Aleatorias</h1>
+        
+        <!-- PANEL DE CONTROL -->
+        <div class="admin-panel">
+            <h3>Configurar Ruleta</h3>
+            <input type="text" id="nueva-categoria" placeholder="Nombre de la categoría (ej: Softbol)">
+            <textarea id="nuevas-preguntas" placeholder="Preguntas separadas por comas (ej: ¿Qué es un strike?, ¿Quién lanza?)"></textarea>
+            <button onclick="agregarCategoria()" class="btn-add">Aceptar y Actualizar</button>
+        </div>
+
+        <!-- CONTENEDOR DE LA RULETA -->
+        <div class="ruleta-container">
+            <canvas id="canvas" width="400" height="400"></canvas>
+            <button id="spin">¡GIRAR!</button>
+        </div>
+
+        <!-- CUADRO DE PREGUNTA (MODAL) -->
+        <div id="pregunta-overlay" class="hidden">
+            <div class="pregunta-card">
+                <h2 id="categoria-nombre"></h2>
+                <p id="pregunta-texto"></p>
+                <button onclick="cerrarPregunta()" class="btn-close">Continuar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
