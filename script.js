@@ -1,8 +1,13 @@
-// 1. Intentamos cargar los datos guardados, si no hay, usamos los de por defecto
-let datosGuardados = localStorage.getItem("misCategorias");
-let opciones = datosGuardados ? JSON.parse(datosGuardados) : [
-    { titulo: "HISTORIA", preguntas: ["¿Quién fue San Martín?", "¿Cuándo fue la Revolución de Mayo?"] },
-    { titulo: "MATEMÁTICA", preguntas: ["¿Cuánto es 15 x 10?", "¿Qué es un ángulo recto?"] }
+const opciones = [
+    { titulo: "ROBERT DREEBEN", preguntas: ["¿Qué plantea Dreeben sobre el currículum oculto?", "¿Qué aprendizajes adquieren los estudiantes además de los contenidos?"], color: "#e94560" }, // Rojo
+    { titulo: "CURRÍCULUM OCULTO", preguntas: ["¿Qué enseña el currículum oculto?", "¿El currículum oculto está escrito o no?"], color: "#0f3460" }, // Azul Oscuro
+    { titulo: "PARADIGMA", preguntas: ["¿Qué es un paradigma?", "¿Qué entiendes por cambio de paradigma?"], color: "#22a6b3" }, // Turquesa
+    { titulo: "CURRÍCULUM FORMAL", preguntas: ["¿Dónde se encuentra establecido oficialmente?", "¿Quién lo diseña?"], color: "#f0932b" }, // Naranja
+    { titulo: "CURRÍCULUM REAL", preguntas: ["¿Por qué puede diferenciarse del formal?", "¿Qué factores influyen en su aplicación?"], color: "#6ab04c" }, // Verde
+    { titulo: "CURRÍCULUM IMPLÍCITO", preguntas: ["¿Cómo se transmite?", "¿Qué relación tiene con los valores?"], color: "#be2edd" }, // Violeta
+    { titulo: "CURRÍCULUM EXPLÍCITO", preguntas: ["¿Qué contenidos incluye?", "¿Cómo se planifica?"], color: "#4834d4" }, // Azul Real
+    { titulo: "CURRÍCULUM NULO", preguntas: ["¿Qué significa?", "¿Por qué ciertos contenidos se excluyen?"], color: "#eb4d4b" }, // Carmesí
+    { titulo: "JACKSON", preguntas: ["¿Qué analiza en la vida escolar?", "¿Qué son las experiencias cotidianas escolares?"], color: "#f9ca24" }  // Amarillo
 ];
 
 const canvas = document.getElementById("canvas");
@@ -20,7 +25,9 @@ function dibujarRuleta() {
     ctx.clearRect(0, 0, 400, 400);
     opciones.forEach((opcion, i) => {
         const angle = startAngle + i * arc;
-        ctx.fillStyle = i % 2 === 0 ? "#e94560" : "#0f3460"; 
+        
+        // --- AQUÍ USAMOS EL COLOR ÚNICO DE CADA CATEGORÍA ---
+        ctx.fillStyle = opcion.color; 
         
         ctx.beginPath();
         ctx.arc(200, 200, 190, angle, angle + arc, false);
@@ -32,40 +39,21 @@ function dibujarRuleta() {
         
         ctx.save();
         ctx.fillStyle = "white";
-        ctx.font = "bold 14px Arial";
-        ctx.translate(200 + Math.cos(angle + arc / 2) * 130, 200 + Math.sin(angle + arc / 2) * 130);
+        ctx.font = "bold 11px sans-serif"; 
+        ctx.translate(200 + Math.cos(angle + arc / 2) * 125, 200 + Math.sin(angle + arc / 2) * 125);
         ctx.rotate(angle + arc / 2 + Math.PI / 2);
-        ctx.fillText(opcion.titulo, -ctx.measureText(opcion.titulo).width / 2, 0);
+        
+        const palabras = opcion.titulo.split(" ");
+        if(palabras.length > 1 && opcion.titulo.length > 12) {
+            ctx.fillText(palabras[0], -ctx.measureText(palabras[0]).width / 2, -5);
+            if(palabras[1]) ctx.fillText(palabras[1], -ctx.measureText(palabras[1]).width / 2, 10);
+        } else {
+            ctx.fillText(opcion.titulo, -ctx.measureText(opcion.titulo).width / 2, 0);
+        }
         ctx.restore();
     });
 }
 
-function agregarCategoria() {
-    const nombreCat = document.getElementById("nueva-categoria").value;
-    const preguntasTexto = document.getElementById("nuevas-preguntas").value;
-
-    if (nombreCat && preguntasTexto) {
-        const listaPreguntas = preguntasTexto.split(",").map(p => p.trim());
-        opciones.push({
-            titulo: nombreCat.toUpperCase(),
-            preguntas: listaPreguntas
-        });
-
-        // --- ESTO ES LO NUEVO: GUARDAR EN LA MEMORIA ---
-        localStorage.setItem("misCategorias", JSON.stringify(opciones));
-        // -----------------------------------------------
-
-        document.getElementById("nueva-categoria").value = "";
-        document.getElementById("nuevas-preguntas").value = "";
-        arc = Math.PI / (opciones.length / 2); 
-        dibujarRuleta();
-        alert("¡Guardado permanentemente!");
-    } else {
-        alert("Completa todos los campos");
-    }
-}
-
-// El resto de las funciones (spin, rotarRuleta, detenerRuleta, etc.) se mantienen igual
 spinBtn.addEventListener("click", () => {
     spinAngleStart = Math.random() * 10 + 10;
     spinTime = 0;
