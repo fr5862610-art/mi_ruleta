@@ -69,42 +69,40 @@ h1 {
     overflow: hidden;
 }
 
-/* 🌟 TEXTOS DENTRO DE LA RULETA (DISEÑO MEJORADO Y LLAMATIVO) 🌟 */
+/* 🌟 MEJORA GRÁFICA DE LOS CARTELITOS 🌟 */
 .texto-porcion {
     position: absolute;
-    width: 110px; /* Ancho fijo para centrar bien el cartelito */
+    width: 100px;
     left: 50%;
     top: 50%;
-    transform-origin: 0% 0%;
     
-    /* Estilo de etiqueta moderna */
-    background: rgba(255, 255, 255, 0.25); /* Fondo clarito semi-transparente */
-    backdrop-filter: blur(2px);
-    padding: 6px 10px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    /* Fondo redondeado moderno */
+    background: rgba(255, 255, 255, 0.85); 
+    padding: 6px 4px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     
-    /* Tipografía */
-    font-weight: 800; /* Letra bien gruesa */
+    /* Texto centrado y grueso */
+    font-weight: 800; 
     font-size: 11px;
-    letter-spacing: 1px; /* Espacio entre letras */
     text-align: center;
-    color: white;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    letter-spacing: 0.5px;
 }
 
-/* Rotación y posición exacta ajustada para los nuevos cartelitos */
+/* Posición y rotación corregida para que NO queden al revés */
 .choice { 
-    transform: rotate(60deg) translate(40px, -15px); 
+    transform: translate(-50%, -50%) rotate(60deg) translate(0, -90px) rotate(-60deg);
+    color: #e74c3c;
 }
 .verbal { 
-    transform: rotate(180deg) translate(40px, -15px); 
+    transform: translate(-50%, -50%) rotate(180deg) translate(0, -90px) rotate(-180deg);
+    color: #3498db;
 }
 .vf { 
-    transform: rotate(300deg) translate(40px, -15px); 
-    background: rgba(44, 62, 80, 0.15); /* Fondo oscuro suave para que resalte en el amarillo */
-    color: #2c3e50; /* Letra oscura para mejor contraste */
-    border: 1px solid rgba(44, 62, 80, 0.2);
+    transform: translate(-50%, -50%) rotate(300deg) translate(0, -90px) rotate(-300deg);
+    color: #f1c40f;
+    background: #2c3e50; /* Fondo oscuro para que resalte más en el amarillo */
 }
 
 .centro-ruleta {
