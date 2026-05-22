@@ -4,7 +4,161 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ruleta de Desafio Gramatical</title>
-    <link rel="stylesheet" href="estilos-sustantivos.css?v=3">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        body {
+            background: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .contenedor {
+            text-align: center;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .subtitulo {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .ruleta-contenedor {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            margin: 0 auto 30px auto;
+        }
+
+        .indicador {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #2c3e50;
+            font-size: 28px;
+            z-index: 10;
+        }
+
+        .ruleta {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 6px solid #2c3e50;
+            position: relative;
+            background: conic-gradient(#e74c3c 0deg 120deg, #3498db 120deg 240deg, #f1c40f 240deg 360deg);
+            transform: rotate(0deg);
+        }
+
+        .texto-porcion {
+            position: absolute;
+            width: 90px;
+            left: 50%;
+            top: 50%;
+            background: #ffffff; 
+            padding: 6px 4px;
+            border-radius: 6px;
+            border: 2px solid #2c3e50;
+            font-weight: bold; 
+            font-size: 11px;
+            text-align: center;
+        }
+
+        .choice { 
+            transform: translate(-50%, -50%) rotate(60deg) translate(0, -90px) rotate(-60deg);
+            color: #e74c3c;
+        }
+        .verbal { 
+            transform: translate(-50%, -50%) rotate(180deg) translate(0, -90px) rotate(-180deg);
+            color: #3498db;
+        }
+        .vf { 
+            transform: translate(-50%, -50%) rotate(300deg) translate(0, -90px) rotate(-300deg);
+            color: #2c3e50;
+        }
+
+        .centro-ruleta {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: #ffffff;
+            border: 4px solid #2c3e50;
+            border-radius: 50%;
+            z-index: 5;
+        }
+
+        #boton-girar {
+            background: #27ae60;
+            color: #ffffff;
+            border: none;
+            padding: 15px 35px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        .modal {
+            display: none; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-contenido {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            border: 3px solid #2c3e50;
+            white-space: pre-line; 
+            font-size: 18px;
+            color: #2c3e50;
+        }
+
+        #boton-cerrar {
+            margin-top: 25px;
+            background-color: #2c3e50;
+            color: #ffffff;
+            border: none;
+            padding: 10px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
