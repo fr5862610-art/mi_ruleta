@@ -69,28 +69,27 @@ h1 {
     overflow: hidden;
 }
 
-/* 🌟 MEJORA GRÁFICA DE LOS CARTELITOS 🌟 */
+/* 🌟 MEJORA GRÁFICA DE LOS CARTELITOS DEL JUEGO 🌟 */
 .texto-porcion {
     position: absolute;
-    width: 100px;
+    width: 90px;
     left: 50%;
     top: 50%;
     
-    /* Fondo redondeado moderno */
-    background: rgba(255, 255, 255, 0.85); 
+    /* Cartelitos horizontales con fondo sólido */
+    background: #ffffff; 
     padding: 6px 4px;
     border-radius: 6px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+    border: 2px solid #2c3e50;
     
-    /* Texto centrado y grueso */
-    font-weight: 800; 
+    /* Fuente llamativa */
+    font-weight: 900; 
     font-size: 11px;
     text-align: center;
-    letter-spacing: 0.5px;
 }
 
-/* Posición y rotación corregida para que NO queden al revés */
+/* Ubicación prolija en el centro de cada color, manteniéndose legibles */
 .choice { 
     transform: translate(-50%, -50%) rotate(60deg) translate(0, -90px) rotate(-60deg);
     color: #e74c3c;
@@ -101,8 +100,9 @@ h1 {
 }
 .vf { 
     transform: translate(-50%, -50%) rotate(300deg) translate(0, -90px) rotate(-300deg);
-    color: #f1c40f;
-    background: #2c3e50; /* Fondo oscuro para que resalte más en el amarillo */
+    color: #ffffff;
+    background: #2c3e50;
+    border: 2px solid #f1c40f;
 }
 
 .centro-ruleta {
@@ -136,7 +136,7 @@ h1 {
     transform: translateY(-2px);
 }
 
-/* DISEÑO DEL CUADRO FLOTANTE EN EL MEDIO (MODAL) */
+/* CUADRO EN EL MEDIO */
 .modal {
     display: none; 
     position: fixed;
