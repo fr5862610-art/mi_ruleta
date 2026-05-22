@@ -1,7 +1,9 @@
 const botonGirar = document.getElementById('boton-girar'); 
 const ruleta = document.getElementById('ruleta'); 
+const cuadroPregunta = document.getElementById('cuadro-pregunta');
+const textoPregunta = document.getElementById('texto-pregunta');
+const botonCerrar = document.getElementById('boton-cerrar');
 
-// Bancos de preguntas basados exactamente en tu nueva lista
 let bancoChoice = [
     "🔹 MÚLTIPLE CHOICE\n\n¿Qué tipo de sustantivo es “María”?\n\na) Común\nb) Propio\nc) Abstracto",
     "🔹 MÚLTIPLE CHOICE\n\n¿Cuál de estas palabras es un sustantivo común?\n\na) Córdoba\nb) perro\nc) Juan",
@@ -41,7 +43,6 @@ let bancoVF = [
     "✅❌ VERDADERO O FALSO\n\nLos sustantivos abstractos nombran sentimientos, ideas o emociones."
 ];
 
-// Copias de respaldo para cuando se agoten las preguntas
 const copiaChoice = [...bancoChoice];
 const copiaVerbales = [...bancoVerbales];
 const copiaVF = [...bancoVF];
@@ -52,14 +53,12 @@ botonGirar.addEventListener('click', () => {
     if (girando) return;
     girando = true;
     
-    // Determina al azar cuál sector caerá: 0 = Choice (Rojo), 1 = Verbal (Azul), 2 = V/F (Amarillo)
     const indiceModalidad = Math.floor(Math.random() * 3);
-    
     const gradosPorPorcion = 120;
-    const vueltas = 5 * 360; // 5 giros completos de emoción
+    const vueltas = 5 * 360; 
     
-    // Sumamos 60 grados para que la flecha se detenga justo en el medio de cada color
-    const gradosFinales = vueltas + (indiceModalidad * gradosPorPorcion) + 60;
+    // El indicador apunta arriba (0°). Ajustamos el giro restando para que coincida visualmente el color con la categoría elegida.
+    const gradosFinales = vueltas - (indiceModalidad * gradosPorPorcion) - 60;
 
     ruleta.style.transition = 'transform 3.5s ease-out';
     ruleta.style.transform = `rotate(${gradosFinales}deg)`;
@@ -83,13 +82,15 @@ botonGirar.addEventListener('click', () => {
             preguntaElegida = bancoVF.splice(index, 1)[0];
         }
 
-        // Despliega el cartel de alerta con el desafío seleccionado
-        alert(preguntaElegida);
-        
-        // Mantiene la posición física de la rueda para la próxima vuelta
-        ruleta.style.transition = 'none';
-        ruleta.style.transform = `rotate(${gradosFinales % 360}deg)`;
+        // En vez de usar alert(), mostramos nuestro cuadro flotante en el medio
+        textoPregunta.innerText = preguntaElegida;
+        cuadroPregunta.style.display = "flex";
         
         girando = false;
     }, 3500);
+});
+
+// Acción para cerrar el cuadro flotante del medio
+botonCerrar.addEventListener('click', () => {
+    cuadroPregunta.style.display = "none";
 });
