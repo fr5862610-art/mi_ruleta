@@ -69,27 +69,21 @@ h1 {
     overflow: hidden;
 }
 
-/* 🌟 MEJORA GRÁFICA DE LOS CARTELITOS DEL JUEGO 🌟 */
 .texto-porcion {
     position: absolute;
     width: 90px;
     left: 50%;
     top: 50%;
-    
-    /* Cartelitos horizontales con fondo sólido */
     background: #ffffff; 
     padding: 6px 4px;
     border-radius: 6px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.25);
     border: 2px solid #2c3e50;
-    
-    /* Fuente llamativa */
     font-weight: 900; 
     font-size: 11px;
     text-align: center;
 }
 
-/* Ubicación prolija en el centro de cada color, manteniéndose legibles */
 .choice { 
     transform: translate(-50%, -50%) rotate(60deg) translate(0, -90px) rotate(-60deg);
     color: #e74c3c;
@@ -136,7 +130,6 @@ h1 {
     transform: translateY(-2px);
 }
 
-/* CUADRO EN EL MEDIO */
 .modal {
     display: none; 
     position: fixed;
