@@ -69,23 +69,43 @@ h1 {
     overflow: hidden;
 }
 
-/* Estilos para los textos dentro de la ruleta */
+/* 🌟 TEXTOS DENTRO DE LA RULETA (DISEÑO MEJORADO Y LLAMATIVO) 🌟 */
 .texto-porcion {
     position: absolute;
-    width: 50%;
+    width: 110px; /* Ancho fijo para centrar bien el cartelito */
     left: 50%;
     top: 50%;
     transform-origin: 0% 0%;
-    font-weight: bold;
-    font-size: 13px;
+    
+    /* Estilo de etiqueta moderna */
+    background: rgba(255, 255, 255, 0.25); /* Fondo clarito semi-transparente */
+    backdrop-filter: blur(2px);
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    
+    /* Tipografía */
+    font-weight: 800; /* Letra bien gruesa */
+    font-size: 11px;
+    letter-spacing: 1px; /* Espacio entre letras */
+    text-align: center;
     color: white;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-/* Rotación y posición exacta para cada categoría */
-.choice { transform: rotate(60deg) translate(45px, -10px); }
-.verbal { transform: rotate(180deg) translate(45px, -10px); }
-.vf { transform: rotate(300deg) translate(45px, -10px); color: #2c3e50; text-shadow: none; }
+/* Rotación y posición exacta ajustada para los nuevos cartelitos */
+.choice { 
+    transform: rotate(60deg) translate(40px, -15px); 
+}
+.verbal { 
+    transform: rotate(180deg) translate(40px, -15px); 
+}
+.vf { 
+    transform: rotate(300deg) translate(40px, -15px); 
+    background: rgba(44, 62, 80, 0.15); /* Fondo oscuro suave para que resalte en el amarillo */
+    color: #2c3e50; /* Letra oscura para mejor contraste */
+    border: 1px solid rgba(44, 62, 80, 0.2);
+}
 
 .centro-ruleta {
     position: absolute;
@@ -120,7 +140,7 @@ h1 {
 
 /* DISEÑO DEL CUADRO FLOTANTE EN EL MEDIO (MODAL) */
 .modal {
-    display: none; /* Oculto por defecto */
+    display: none; 
     position: fixed;
     top: 0;
     left: 0;
@@ -142,7 +162,7 @@ h1 {
     text-align: center;
     box-shadow: 0 5px 25px rgba(0,0,0,0.3);
     border: 3px solid #2c3e50;
-    white-space: pre-line; /* Mantiene los saltos de línea de las preguntas */
+    white-space: pre-line; 
     font-size: 18px;
     color: #2c3e50;
     font-weight: 500;
