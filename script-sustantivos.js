@@ -35,7 +35,7 @@ let bancoVF = [
     "✅❌ VERDADERO O FALSO\n\n“Perro” es un sustantivo propio.",
     "✅❌ VERDADERO O FALSO\n\n“Alegría” es un sustantivo abstracto.",
     "✅❌ VERDADERO O FALSO\n\n“Mesa” es un sustantivo concreto.",
-    "✅❌ VERDADERO O FALSO\n\n“Leche” es un sustantivo contable.",
+    "✅❌ VERDERO O FALSO\n\n“Leche” es un sustantivo contable.",
     "✅❌ VERDADERO O FALSO\n\nLos sustantivos incontables no se pueden contar fácilmente con números.",
     "✅❌ VERDADERO O FALSO\n\n“Ejército” es un sustantivo colectivo.",
     "✅❌ VERDADERO O FALSO\n\n“Jugador” es un sustantivo individual.",
@@ -53,12 +53,17 @@ botonGirar.addEventListener('click', () => {
     if (girando) return;
     girando = true;
     
+    // Elegimos un índice aleatorio: 0 para Choice, 1 para Verbal, 2 para V o F
     const indiceModalidad = Math.floor(Math.random() * 3);
-    const gradosPorPorcion = 120;
     const vueltas = 5 * 360; 
     
-    // El indicador apunta arriba (0°). Ajustamos el giro restando para que coincida visualmente el color con la categoría elegida.
-    const gradosFinales = vueltas - (indiceModalidad * gradosPorPorcion) - 60;
+    // CORRECCIÓN DE CAJA: Calculamos el giro exacto para que el color coincida físicamente con el indicador de arriba
+    let gradosPorcion = 0;
+    if (indiceModalidad === 0) gradosPorcion = 60;   // Rojo (Choice)
+    if (indiceModalidad === 1) gradosPorcion = 180;  // Azul (Verbal)
+    if (indiceModalidad === 2) gradosPorcion = 300;  // Amarillo (V o F)
+    
+    const gradosFinales = vueltas - gradosPorcion;
 
     ruleta.style.transition = 'transform 3.5s ease-out';
     ruleta.style.transform = `rotate(${gradosFinales}deg)`;
@@ -82,7 +87,6 @@ botonGirar.addEventListener('click', () => {
             preguntaElegida = bancoVF.splice(index, 1)[0];
         }
 
-        // En vez de usar alert(), mostramos nuestro cuadro flotante en el medio
         textoPregunta.innerText = preguntaElegida;
         cuadroPregunta.style.display = "flex";
         
@@ -90,7 +94,6 @@ botonGirar.addEventListener('click', () => {
     }, 3500);
 });
 
-// Acción para cerrar el cuadro flotante del medio
 botonCerrar.addEventListener('click', () => {
     cuadroPregunta.style.display = "none";
 });
