@@ -60,14 +60,32 @@ h1 {
     border: 6px solid #2c3e50;
     position: relative;
     box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-    /* 3 sectores de 120 grados cada uno */
     background: conic-gradient(
-        #e74c3c 0deg 120deg,   /* Múltiple Choice - Rojo */
-        #3498db 120deg 240deg, /* Responder Verbalmente - Azul */
-        #f1c40f 240deg 360deg  /* Verdadero o Falso - Amarillo */
+        #e74c3c 0deg 120deg,   
+        #3498db 120deg 240deg, 
+        #f1c40f 240deg 360deg  
     );
     transform: rotate(0deg);
+    overflow: hidden;
 }
+
+/* Estilos para los textos dentro de la ruleta */
+.texto-porcion {
+    position: absolute;
+    width: 50%;
+    left: 50%;
+    top: 50%;
+    transform-origin: 0% 0%;
+    font-weight: bold;
+    font-size: 13px;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+}
+
+/* Rotación y posición exacta para cada categoría */
+.choice { transform: rotate(60deg) translate(45px, -10px); }
+.verbal { transform: rotate(180deg) translate(45px, -10px); }
+.vf { transform: rotate(300deg) translate(45px, -10px); color: #2c3e50; text-shadow: none; }
 
 .centro-ruleta {
     position: absolute;
@@ -98,9 +116,51 @@ h1 {
 #boton-girar:hover {
     background: #219653;
     transform: translateY(-2px);
-    box-shadow: 0 7px 20px rgba(39, 174, 96, 0.5);
 }
 
-#boton-girar:active {
-    transform: translateY(1px);
+/* DISEÑO DEL CUADRO FLOTANTE EN EL MEDIO (MODAL) */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-contenido {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+    border: 3px solid #2c3e50;
+    white-space: pre-line; /* Mantiene los saltos de línea de las preguntas */
+    font-size: 18px;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+#boton-cerrar {
+    margin-top: 25px;
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#boton-cerrar:hover {
+    background-color: #1a252f;
 }
